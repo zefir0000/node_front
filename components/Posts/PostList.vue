@@ -4,12 +4,13 @@
       v-for="post in posts"
       :key="post.id"
       :id="post.id"
-      :is-admin="post.price"
       :thumbnail="post.imageLink"
       :title="post.title"
-      :link="post.link"
+      :shop="post.shop"
       :price="post.price"
       :brand="post.brand"
+      :currency="post.currency"
+
 
     />
   </section>

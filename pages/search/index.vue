@@ -28,7 +28,7 @@ export default {
   
   methods: {
     productSearch(context) {
-      return axios.get('http://localhost:8080/getProd?name=ra'+ this.name)
+      return axios.get('http://localhost:8080/getProd?name='+ this.name)
         .then(res => {
           return {
             products: res.data

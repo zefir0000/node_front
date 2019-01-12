@@ -34,7 +34,12 @@ export default {
         })
         .catch(e => context.error(e))
     },
-  
+    props: {
+    posts: {
+      type: Array,
+      required: true
+    }
+  },
 
   layout: 'product'
 

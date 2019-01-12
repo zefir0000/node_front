@@ -31,7 +31,9 @@ export default {
 <style>
 .home { 
     background: url('../static/bg.jpg'); 
-    background-size: cover; 
+    background-size: 100%;
+    background-attachment: fixed; 
+
 }
 .app-footer { 
   font-family: 'Montserrat', sans-serif;
