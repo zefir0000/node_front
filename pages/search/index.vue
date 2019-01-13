@@ -1,50 +1,54 @@
 <template>
   <div>
     <div>
-    <section class="search">
-    <h1 class="search__header"></h1>
-    <!-- <form class="search__form" action="asyncData" method="GET" role="search" type="search"> -->
-    <input class="search__input" placeholder="What games you want buy" type="text" name="name" v-model="name"/>
-        <div class="actions_inline">
-          <button class="btn btn--primary" @click="productSearch">search</button>
-          </div>
-     
-    <PostList :posts="products" />
-    <!-- </form> -->
-</section>
-  </div>
-    <nuxt-child />
+      <section class="search">
+        <h1 class="search__header"></h1>
+        <form class="search__form" action="#" method="GET">
+          <input
+            class="search__input"
+            placeholder="What games you want buy"
+            type="text"
+            name="name"
+            v-model="name"
+          >
+          <div class="actions_inline">
+            <button class="btn btn--primary" @click="searchProduct">search</button>
+          </div>  
+          <PostList :posts="loadedPosts" />
+
+        </form>
+      </section>
+    </div>
+    <nuxt-child/>
   </div>
 </template>
 
 <script>
 import PostList from "@/components/Posts/PostList";
 
-import axios from 'axios'
+import axios from "axios";
 export default {
   components: {
     PostList
   },
-  
   methods: {
-    productSearch(context) {
-      return axios.get('http://localhost:8080/getProd?name='+ this.name)
-        .then(res => {
+    async searchProduct(context) {
+      let {data} = await axios.get('http://localhost:8080/getProd?name=' + this.name)
           return {
-            products: res.data
-          }
-        })
-        .catch(e => res.error(e))
-    }
+          
+        loadedPosts: data
+        }
+    },
   },
-  props: {
-    posts: {
-      type: Array,
-      required: true
-    }
-  },
-  layout: 'product'
+  
 
+  computed: {
+      loadedPosts() {
+        return this.$store.getters.loadedPosts;
+    }
+  },
+
+  layout: "product"
 };
 </script>
 
@@ -106,5 +110,4 @@ export default {
   background-position: center;
   background-size: cover;
 }
-
 </style>

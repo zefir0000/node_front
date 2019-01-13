@@ -45,7 +45,7 @@ export default {
       required: true
     },
     price: {
-      type: String,
+      type: Number,
       required: true
     },
     currency: {
@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     postLink() {
-      return this.isAdmin ? "/admin/" + this.id : "/posts/" + this.id;
+      return "/products/" + this.id;
     }
   }
 };

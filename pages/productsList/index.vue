@@ -24,7 +24,6 @@ export default {
   components: {
     PostList
   },
-  
     asyncData(context) {
       return axios.get('http://localhost:8080/getProd?name=')
         .then(res => {
