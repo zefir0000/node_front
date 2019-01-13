@@ -15,6 +15,8 @@
             <button class="btn btn--primary" @click="searchProduct">search</button>
           </div>  
           <PostList :posts="loadedPosts" />
+          <PostList :posts="products" />
+
 
         </form>
       </section>
@@ -36,19 +38,20 @@ export default {
       let {data} = await axios.get('http://localhost:8080/getProd?name=' + this.name)
           return {
           
-        loadedPosts: data
+        products: data
+      
         }
+      
     },
   },
   
 
-  computed: {
-      loadedPosts() {
-        return this.$store.getters.loadedPosts;
-    }
-  },
+  // computed: {
+  //     loadedPosts() {
+  //       return this.$store.getters.loadedPosts;
+  //   }
+  // },
 
-  layout: "product"
 };
 </script>
 

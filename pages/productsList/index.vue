@@ -3,13 +3,9 @@
     <div>
     <section class="search">
     <h1 class="search__header"></h1>
-    <form class="search__form" action="asyncData" method="GET" role="search" type="search"> 
-    <input class="search__input" placeholder="What games you want buy" type="text" name="name" v-model="name"/>
-        <div class="actions_inline">
-          </div>
+    
      
     <PostList :posts="products" />
-     </form> 
 </section>
   </div>
     <nuxt-child />
@@ -32,16 +28,7 @@ export default {
           }
         })
         .catch(e => context.error(e))
-    },
-    props: {
-    posts: {
-      type: Array,
-      required: true
     }
-  },
-
-  layout: 'product'
-
 };
 </script>
 
