@@ -3,7 +3,19 @@
     <div>
     <section class="search">
     <h1 class="search__header"></h1>
-    
+    <div>
+    <form class="search__form" action="" method="GET">
+          <input
+            class="search__input"
+            placeholder="What games you want buy"
+            type="text"
+            name="name"
+          >
+            <button class="btn btn--primary" >search</button>
+
+
+        </form>
+    </div>
      
     <PostList :posts="products" />
 </section>
@@ -21,7 +33,7 @@ export default {
     PostList
   },
     asyncData(context) {
-      return axios.get('http://localhost:8080/getProd?name=')
+      return axios.get('http://localhost:8080/getProd?name=' + context.query.name)
         .then(res => {
           return {
             products: res.data

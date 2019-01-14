@@ -16,25 +16,13 @@
 import PostList from "@/components/Posts/PostList";
 
 import axios from 'axios'
-var config = {
-    headers: {"Access-Control-Expose-Headers": "Access-Control-*",
-    "Access-Control-Allow-Headers": "Access-Control-*, Origin, X-Requested-With, Content-Type, Accept",
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
-    'Access-Control-Allow-Origin': '*',
-    'Allow': 'GET, POST, PUT, DELETE, OPTIONS, HEAD'
-    }
-};
+
 export default {
   components: {
     PostList
   },
-
-  
-
-
-
      async asyncData(context) {
-      let { data } = await axios.get('http://localhost:8080/getProd?name=', config);
+      let { data } = await axios.get('http://localhost:8080/getProd?name=');
           return {
             products: data
           }

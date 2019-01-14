@@ -3,7 +3,7 @@
     <div>
       <section class="search">
         <h1 class="search__header"></h1>
-        <form class="search__form" action="#" method="GET">
+        <form class="search__form" action="" method="GET">
           <input
             class="search__input"
             placeholder="What games you want buy"
@@ -11,14 +11,12 @@
             name="name"
             v-model="name"
           >
-          <div class="actions_inline">
-            <button class="btn btn--primary" @click="searchProduct">search</button>
-          </div>  
-          <PostList :posts="loadedPosts" />
-          <PostList :posts="products" />
+            <button class="btn btn--primary" >search</button>
 
 
         </form>
+                  <PostList :posts="products" />
+
       </section>
     </div>
     <nuxt-child/>
@@ -34,15 +32,17 @@ export default {
     PostList
   },
   methods: {
+    search(){}
+  },
     async searchProduct(context) {
-      let {data} = await axios.get('http://localhost:8080/getProd?name=' + this.name)
-          return {
-          
-        products: data
-      
-        }
-      
-    },
+        console.log(context)
+
+      const { data } = await axios.get('http://localhost:8080/getProd?name=' + context.query.name)
+        return {
+          products: data
+        
+      }
+  
   },
   
 
