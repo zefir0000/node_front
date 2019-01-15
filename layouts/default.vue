@@ -11,7 +11,6 @@
     </body>
     
     <nuxt/>
-    <footer class="app-footer">Design by Slawomir </footer>
                      
   </div>
   
