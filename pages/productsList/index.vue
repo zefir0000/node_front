@@ -12,7 +12,12 @@
             type="text"
             name="name"
           >
-            <button class="btn__search" >SEARCH</button>
+          <select name="currency">
+            <option>USD</option>
+            <option>GBP</option>
+            <option>EUR</option>
+	        </select>
+        <button class="btn__search" >SEARCH</button>
 
 
         </form>
@@ -35,7 +40,7 @@ export default {
     PostList
   },
     asyncData(context) {
-      return axios.get('http://localhost:8080/getProd?name=' + context.query.name)
+      return axios.get('http://localhost:8080/getProductBase?name=' + context.query.name + '&currency=' + context.query.currency)
         .then(res => {
           return {
             products: res.data

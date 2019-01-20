@@ -30,6 +30,8 @@ export default {
 <style>
 .home { 
     background: url('../static/bg.jpg'); 
+    opacity: 0,5;
+    background-color: black;
     background-size: 100%;
     background-attachment: fixed; 
 
