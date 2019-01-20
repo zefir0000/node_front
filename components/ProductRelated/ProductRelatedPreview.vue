@@ -1,41 +1,38 @@
 <template>
-  <nuxt-link :to="postLink" class="post-preview" >
-    <article>
-      <table id="table" :title="availability">
-        <tr>
-          <th class="post-thumbnail" :style="{ backgroundImage: 'url(' + thumbnail + ')'}"></th>
+  <article>
+    <table id="table" :title="availability">
+      <tr>
+        <th class="post-content">
+          <center>
+          <p id="title">
+            {{ title }}
+            <br>
+          </p>
+          <table id="details">
+            <th>{{ brand }}</th>
+            <th>{{ shop }}</th>
+            <th>
+              <a class="btn-buy" target="_blank" rel="noopener noreferrer" :href="link">BUY ME NOW</a>
+            </th>
 
-          <th class="post-content" >
-            <center>
-              <p id="title">
-                {{ title }}
-                <br>
-              </p>
-              <table id="details">
-                <th>{{ brand }}</th>
-              </table>
-            </center>
-          </th>
-          <td id="price">{{ price }} {{ currency }} </td>
-        </tr>
-      </table>
-    </article>
-  </nuxt-link>
+          </table>
+          </center>
+        </th>
+        <td id="price">{{ price }} {{ currency }}</td>
+      </tr>
+    </table>
+  </article>
 </template>
 
 <script>
 export default {
-  name: "PostPreview",
+  name: "ProductRelatedPreview",
   props: {
     id: {
       type: Number,
       required: true
     },
     title: {
-      type: String,
-      required: true
-    },
-    thumbnail: {
       type: String,
       required: true
     },
@@ -51,39 +48,39 @@ export default {
       type: Number,
       required: true
     },
-    brand: {
+    shop: {
       type: String,
       required: true
-    }
-  },
-  computed: {
-    postLink() {
-      return "/products/" + this.id;
+    },
+    link: {
+      type: String,
+      required: true
     }
   }
 };
 </script>
-
-
 <style scoped>
 #table[title~="1"] {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  border: 1px solid #ccc;
+  width: 700px;
 }
 #table[title~="0"] {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
+  border: 1px solid #ccc;
   background-color: red;
   opacity: 0.3;
-  width: 100%;
+  width: 700px;
 }
 
 #price {
-  width: 10%;
+  width: 20%;
   color: white;
 }
 #details {
+  width: 100%;
   font-size: 12px;
 }
 #title {
@@ -124,20 +121,12 @@ export default {
   width: 90%;
 }
 
-
-@media (min-width: 50px) {
+/* @media (min-width: 50px) {
   .post-preview {
     width: 100%;
     margin: 10px;
   }
-}
-
-.post-thumbnail {
-  width: 80px;
-  height: 80px;
-  background-position: center;
-  background-size: cover;
-}
+} */
 
 .post-content {
   padding: 10px;
@@ -147,5 +136,4 @@ a:hover .post-content,
 a:active .post-content {
   background-color: #ccc;
 }
-
 </style>

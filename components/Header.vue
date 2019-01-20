@@ -10,9 +10,6 @@
       <li>
         <nuxt-link to="/productsList">Product List</nuxt-link>
       </li>
-      <li>
-        <nuxt-link to="/search">Search</nuxt-link>
-      </li>
     </ul>
   </header>
 </template>

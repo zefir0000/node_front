@@ -1,40 +1,43 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">{{ loadedPost.title }}</h1>
+      <h1 class="post-title">{{ productBase.title }}</h1>
       <div class="post-details">
-        <div class="post-price">
-          <b>
-            Price {{ loadedPost.price }} {{ loadedPost.currency }}
-            <a
-              class="btn-buy"
-              target="_blank"
-              rel="noopener noreferrer"
-              :href="loadedPost.link"
-            >BUY ME NOW</a>
-          </b>
-        </div>
+            <ProductRelated :productsRelated="productsRelated" />
       </div>
-      <p class="post-thumbnail" :style="{ backgroundImage: 'url(' + loadedPost.imageLink + ')'}"></p>
-      <p class="post-content">{{ loadedPost.description }}</p>
+      <table>
+        <tr> <th>
+      <p class="post-thumbnail" :style="{ backgroundImage: 'url(' + productBase.image + ')'}"></p>
+      </th><th>
+      <p class="post-content">{{ productBase.description }}</p>
+      </th></tr></table>
     </section>
     <section class="post-feedback">
-      <p></p>
-      <div class="post-detail">Last updated on {{ loadedPost.updatedDate }}</div>
+      <div class="post-detail">Last updated on {{ productBase.updatedDate }}</div>
     </section>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import ProductRelated from "@/components/ProductRelated/ProductRelated";
+
 
 export default {
+  components: {
+    ProductRelated
+  },
   async asyncData(context) {
     let { data } = await axios.get(
-      "http://localhost:8080/getProductById?id=" + context.route.params.id
+      "http://localhost:8080/getProductBaseRelated?id=" + context.route.params.id
     );
-    console.log(data);
-    return { loadedPost: data[0] };
+    console.log("related",data.RelatedProducts);
+
+
+    return { 
+      productBase: data.ProductBase[0],
+      productsRelated: data.RelatedProducts
+       };
   },
   created() {},
   layout: "default"
@@ -44,8 +47,8 @@ export default {
 
 <style scoped>
 .post-thumbnail {
-  width: 100%;
-  height: 750px;
+  width: 230px;
+  height: 336px;
   background-position: center;
   background-size: cover;
 }
@@ -63,7 +66,7 @@ export default {
 
 @media (min-width: 768px) {
   .post {
-    width: 600px;
+    width: 700px;
     margin: auto;
   }
 }
