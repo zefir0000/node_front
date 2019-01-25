@@ -3,8 +3,6 @@
     <div>
     <section class="search">
     <h1 class="search__header"></h1>
-    
-     
     <PostList :posts="products" />
 </section>
   </div>
@@ -22,7 +20,7 @@ export default {
     PostList
   },
      async asyncData(context) {
-      let { data } = await axios.get('http://localhost:8080/getProd?name=');
+      let { data } = await axios.get('http://localhost:8080/products?name=');
           return {
             products: data
           }

@@ -1,41 +1,42 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">{{ productBase.title }}</h1>
-      <div class="post-details">
-            <ProductRelated :productsRelated="productsRelated" />
-      </div>
+      <h1 class="post-title"></h1>
+      <div class="post-details">{{ market.name }}</div>
       <table>
-        <tr> <th>
-      <p class="post-thumbnail" :style="{ backgroundImage: 'url(' + productBase.image + ')'}"></p>
-      </th><th>
-      <p class="post-content">{{ productBase.description }}</p>
-      </th></tr></table>
+        <tr>
+          <th>support: {{ market.support }}</th>
+        </tr>
+        <tr>
+          <th>Description: {{ market.description }}</th>
+        </tr>
+        <tr>
+          <th>{{ market.logo }}</th>
+        </tr>
+        <tr>
+          <th>Raiting: {{ market.raiting }}</th>
+        </tr>
+        <tr>
+          <th>Adress: {{ market.adress }}</th>
+        </tr>
+      </table>
     </section>
-    <section class="post-feedback">
-      <div class="post-detail">Last updated on {{ productBase.updatedDate }}</div>
-    </section>
+    <section class="post-feedback"></section>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import ProductRelated from "@/components/ProductRelated/ProductRelated";
-
 
 export default {
-  components: {
-    ProductRelated
-  },
   async asyncData(context) {
     let { data } = await axios.get(
-      "http://localhost:8080/getProductBaseRelated?id=" + context.route.params.id
+      "http://localhost:8080/market?name=" + context.route.params.shop
     );
 
-    return { 
-      productBase: data.ProductBase[0],
-      productsRelated: data.RelatedProducts
-       };
+    return {
+      market: data[0]
+    };
   },
   created() {},
   layout: "default"
@@ -124,7 +125,6 @@ export default {
   -webkit-box-shadow: inset 0px 1px 0px 0px #f5978e;
   box-shadow: inset 0px 1px 0px 0px #f5978e;
   background: -moz-linear-gradient(center top, #f24537 5%, #c62d1f 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');
   background-color: #f24537;
   -webkit-border-top-left-radius: 21px;
   -moz-border-radius-topleft: 21px;
@@ -155,7 +155,6 @@ export default {
 }
 .btn-buy:hover {
   background: -moz-linear-gradient(center top, #c62d1f 5%, #f24537 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537');
   background-color: #c62d1f;
 }
 .btn-buy:active {

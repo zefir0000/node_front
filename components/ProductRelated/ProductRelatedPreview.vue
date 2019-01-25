@@ -10,7 +10,11 @@
           </p>
           <table id="details">
             <th>{{ brand }}</th>
-            <th>{{ shop }}</th>
+            
+            <th>  <nuxt-link :to="market" class="post-preview" >
+            {{ shop }}
+            </nuxt-link>
+            </th>
             <th>
               <a class="btn-buy" target="_blank" rel="noopener noreferrer" :href="link">BUY ME NOW</a>
             </th>
@@ -55,6 +59,11 @@ export default {
     link: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    market() {
+      return "/market/" + this.shop;
     }
   }
 };
