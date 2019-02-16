@@ -5,15 +5,19 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedPosts: [],
+      loadedNews: [],
       loadedNews: []
     },
-    
+
     mutations: {
       setPosts(state, posts) {
         state.loadedPosts = posts;
       },
       setNews(state, news) {
         state.loadedNews = news;
+      },
+      setMem(state, mem) {
+        state.loadedMem = mem;
       }
     },
 
@@ -22,11 +26,16 @@ const createStore = () => {
         return axios.get('http://localhost:8080/getTopTen')
           .then(res => {
             vuexContext.commit('setPosts', res.data)
-            return axios.get('http://localhost:8080/getNews')
-              .then(res => {
-                return vuexContext.commit('setNews', res.data)
-              })
-              .catch(e => context.error(e));
+              return axios.get('http://localhost:8080/getNews')
+                .then(res => {
+                  vuexContext.commit('setNews', res.data)
+                    return axios.get('http://localhost:8080/getMems')
+                    .then(res => {
+                      return vuexContext.commit('setMem', res.data)
+                    })
+                    .catch(e => context.error(e));
+                })
+                .catch(e => context.error(e));
           })
           .catch(e => context.error(e));
       },
@@ -37,6 +46,9 @@ const createStore = () => {
 
       setNews(vuexContext, news) {
         vuexContext.commit("setNews", news);
+      },
+      setMem(vuexContext, mem) {
+        vuexContext.commit("setMem", mem);
       }
     },
     getters: {
@@ -45,6 +57,9 @@ const createStore = () => {
       },
       loadedNews(state) {
         return state.loadedNews;
+      },
+      loadedMem(state) {
+        return state.loadedMem;
       }
     },
 

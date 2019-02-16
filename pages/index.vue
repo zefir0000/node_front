@@ -17,9 +17,9 @@
       <News :newss="loadedNews"/>
     </div>
     <div class="side">
-      <h2>MEMY</h2>
-      <h5>Photo of me:</h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
+      <h2>MEM on this day</h2>
+    <div class="image" :style="{ backgroundImage: 'url(' + loadedMem + ')'}"></div>
+
       <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
       <h3>Top 10</h3>
       <p>
@@ -48,11 +48,18 @@ export default {
   },
 
   computed: {
+    
     loadedPosts() {
       return this.$store.getters.loadedPosts;
     },
     loadedNews() {
       return this.$store.getters.loadedNews;
+    },
+    loadedMem() {
+      let baseurl = 'http://localhost:8080/';
+      let imageurl = baseurl + this.$store.getters.loadedMem.patchFile
+      console.log('get', this.$store.getters.loadedMem, 'image', imageurl)
+      return imageurl;
     }
   }
 };
@@ -143,11 +150,13 @@ body {
   padding: 20px;
 }
 
-/* Fake image, just for this example */
-.fakeimg {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
+/* image, just for this example */
+.image {
+  background-color: #666;
+  background-position: center;
+  background-size: cover;
+  height: 400px;
+  padding: 10px;
 }
 
 /* Footer */
