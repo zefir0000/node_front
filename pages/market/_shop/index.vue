@@ -11,7 +11,7 @@
           <th>Description: {{ market.description }}</th>
         </tr>
         <tr>
-          <th>{{ market.logo }}</th>
+          <th class="post-logo" :style="{ backgroundImage: 'url(' + market.logo + ')'}"></th>
         </tr>
         <tr>
           <th>Raiting: {{ market.raiting }}</th>
@@ -45,9 +45,9 @@ export default {
 
 
 <style scoped>
-.post-thumbnail {
-  width: 230px;
-  height: 336px;
+.post-logo {
+  width: 100px;
+  height: 250px;
   background-position: center;
   background-size: cover;
 }
@@ -63,7 +63,7 @@ export default {
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
   .post {
     width: 700px;
     margin: auto;

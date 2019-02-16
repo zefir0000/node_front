@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <ul class="nav-items">
+    <!-- <ul class="nav-items">
       <li>
         <nuxt-link to="/">Home</nuxt-link>
       </li>
@@ -10,15 +10,18 @@
       <li>
         <nuxt-link to="/productsList">Product List</nuxt-link>
       </li>
-    </ul>
+      <li>
+        <nuxt-link to="/search">search</nuxt-link>
+      </li>
+    </ul> -->
   </header>
 </template>
 
 <style scoped>
   
-  .header {
+  /* .header {
     width: 100%;
-    height: 60px;
+    /* height: 60px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,6 +46,6 @@
   .nav-items a:hover,
   .nav-items a:active {
     color: white;
-  }
+  } */
 </style>
 

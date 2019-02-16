@@ -6,25 +6,18 @@
     <div>
       <center>
     <form class="search__form" action="" method="GET">
-          <input
-            class="search__input"
-            placeholder="What games you want buy"
-            type="text"
-            name="name"
-          >
-          <select name="currency">
-            <option>USD</option>
-            <option>GBP</option>
-            <option>EUR</option>
+          
+          <select name="page">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
 	        </select>
-        <button class="btn__search" >SEARCH</button>
-
-
+        <button class="btn__search" >GO</button>
         </form>
         </center>
     </div>
      
-    <PostList :posts="products" />
+    <News :newss="newses" />
 </section>
   </div>
     <nuxt-child />
@@ -32,18 +25,21 @@
 </template>
 
 <script>
-import PostList from "@/components/Posts/PostList";
+import News from "@/components/News/NewsList";
+
 
 import axios from 'axios'
 export default {
   components: {
-    PostList
+    News
   },
+  
     asyncData(context) {
-      return axios.get('http://localhost:8080/getProductBase?name=' + context.query.name + '&currency=' + context.query.currency)
+      return axios.get('http://localhost:8080/getNews')
         .then(res => {
+          console.log(res.data)
           return {
-            products: res.data
+            newses: res.data
           }
         })
         .catch(e => context.error(e))
