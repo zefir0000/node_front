@@ -22,7 +22,6 @@
 import axios from "axios";
 import ProductRelated from "@/components/ProductRelated/ProductRelated";
 
-
 export default {
   components: {
     ProductRelated

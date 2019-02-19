@@ -58,7 +58,6 @@ export default {
     loadedMem() {
       let baseurl = 'http://localhost:8080/';
       let imageurl = baseurl + this.$store.getters.loadedMem.patchFile
-      console.log('get', this.$store.getters.loadedMem, 'image', imageurl)
       return imageurl;
     }
   }
