@@ -2,7 +2,6 @@
   <div>
     <div>
     <section class="search">
-    <h1 class="search__header"></h1>
     <div>
       <center>
     <form class="search__form" action="" method="GET">

@@ -20,9 +20,9 @@
 import Header from '@/components/Header'
 
 export default {
-  components: {
-    Header
-  }
+  // components: {
+  //   Header
+  // }
 }
 </script>
 
@@ -30,7 +30,7 @@ export default {
 <style>
 .home { 
     /* background: url('../static/bg.jpg');  */
-    opacity: 0,5;
+    /* opacity: 0,5; */
     background-color: black;
     background-size: 100%;
     background-attachment: fixed; 

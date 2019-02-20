@@ -68,7 +68,7 @@ export default {
 <style scoped>
 #table[title~="1"] {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
+  background-color: grey;
   width: 100%;
 }
 #table[title~="0"] {
@@ -93,7 +93,6 @@ export default {
 #table td,
 #table th {
   text-align: center;
-  border: 0px solid #ddd;
   padding: 8px;
 }
 
@@ -111,16 +110,12 @@ export default {
 }
 
 #table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
   text-align: left;
-  background-color: transparent;
   color: white;
 }
 .post-preview {
   border: 1px solid #ccc;
   box-shadow: 0 2px 2px #ccc;
-  background-color: transparent;
   width: 90%;
 }
 
@@ -128,7 +123,7 @@ export default {
 @media (min-width: 50px) {
   .post-preview {
     width: 100%;
-    margin: 10px;
+    margin: 0px;
   }
 }
 
@@ -145,7 +140,6 @@ export default {
 
 a:hover .post-content,
 a:active .post-content {
-  background-color: #ccc;
 }
 
 </style>

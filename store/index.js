@@ -6,7 +6,7 @@ const createStore = () => {
     state: {
       loadedPosts: [],
       loadedNews: [],
-      loadedNews: []
+      loadedMem: []
     },
 
     mutations: {
