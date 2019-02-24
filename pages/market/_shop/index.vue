@@ -2,23 +2,26 @@
   <div class="single-post-page">
     <section class="post">
       <h1 class="post-title"></h1>
-      <div class="post-details">{{ market.name }}</div>
+      <div class="post-details"><h1>{{ market.name }}</h1></div>
       <table>
-        <tr>
-          <th>support: {{ market.support }}</th>
+         <tr>
+          <th><br>ratingValue: {{ trustpilot.aggregateRating.ratingValue }} | reviewCount:{{ trustpilot.aggregateRating.reviewCount }}<hr></th>
         </tr>
         <tr>
-          <th>Description: {{ market.description }}</th>
+          <th>support: {{ market.support }}<hr></th>
         </tr>
         <tr>
-          <th class="post-logo" :style="{ backgroundImage: 'url(' + market.logo + ')'}"></th>
+          <th> {{ market.description }}<hr></th>
         </tr>
         <tr>
-          <th>Raiting: {{ market.raiting }}</th>
+          <th class="post-logo" >
+            <a target="_blank" rel="noopener noreferrer" :href="market.link">
+              <img :src=" market.logo "/></a><hr></th>
         </tr>
         <tr>
           <th>Adress: {{ market.adress }}</th>
         </tr>
+
       </table>
     </section>
     <section class="post-feedback"></section>
@@ -33,9 +36,11 @@ export default {
     let { data } = await axios.get(
       "http://localhost:8080/market?name=" + context.route.params.shop
     );
-
+   
+    console.log(data.trustpilot[0].review)
     return {
-      market: data[0]
+      market: data.markets[0],
+      trustpilot: data.trustpilot[0]
     };
   },
   created() {},

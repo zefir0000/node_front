@@ -1,62 +1,45 @@
 <template>
-  <nuxt-link :to="postLink" class="news-view" >
+  <div>
+    <div class="news-view">
     <article class = "view">
-      <h1 class="title"> {{ title }}</h1>
+      <h1 class="title"> {{ news.title }}</h1>
         <hr>
-        <div class="news-thumbnail" :style="{ backgroundImage: 'url(' + imageLink + ')'}"/>
+        <div class="news-thumbnail" :style="{ backgroundImage: 'url(' + news.imageLink + ')'}"/>
         <hr>
-        fb twit inst google likes {{ likes }} unlike {{ unlikes }}
+        fb twit inst google likes {{ news.likes }} unlike {{ news.unlikes }}
         <hr>
-        <div class="content" v-html="news"></div>
+        <div class="content" v-html="news.news"></div>
     </article>
-  </nuxt-link>
+  </div>
+    <nuxt-child />
+  </div>
 </template>
 
 <script>
+import News from "@/components/News/NewsList";
+
+import axios from 'axios'
 export default {
-  name: "NewsView",
-  props: {
-    id: {
-      type: Number,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    imageLink: {
-      type: String,
-      required: false
-    },
-    news: {
-      type: String,
-      required: true
-    },
-    updatedDate: {
-      type: String,
-      required: false
-    },
-    likes: {
-      type: Number,
-      required: false
-    },
-    unlikes: {
-      type: Number,
-      required: false
-    }
+  components: {
+    News
   },
-  computed: {
-    postLink() {
-      return "/news/" + this.id;
+  
+    asyncData(context) {
+      return axios.get('http://localhost:8080/getNewsById/'+ context.route.params.newsId)
+        .then(res => {
+          console.log(res.data)
+          return {
+            news: res.data
+          }
+        })
+        .catch(e => context.error(e))
     }
-  }
 };
 </script>
 
-
 <style scoped>
-
 .title {
+  padding-top: 20px;
   color: black;
   text-align: center;
 }
@@ -65,11 +48,6 @@ export default {
   font-size: 12px;
   text-align: justify;
   margin: 20px;  }
-
-.view {
-  height:380px;
-  overflow:hidden;
-}
 
 .news-view {
   position: ;
@@ -90,7 +68,6 @@ export default {
 	-moz-border-radius-bottomleft:30px;
 	border-bottom-left-radius:30px;
 }
-
 
 @media (min-width: 50px) {
   .news-view {
@@ -114,5 +91,4 @@ a:hover .news-content,
 a:active .news-content {
   background-color: #ccc;
 }
-
 </style>

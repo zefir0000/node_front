@@ -1,112 +1,25 @@
-
 <template>
-<body>
-  <div class="productList">
-      <PostList :posts="products" />
-      </div>
-  <div class="header">
-    <h1>TITLE</h1>
-
-  </div>
-      <section class="search">
-        <center>
-  <div class="search">
-    <form class="search__form" action="" method="GET">
-          <input
-            class="search__input"
-            placeholder="What games you want buy"
-            type="text"
-            name="name"
-            v-model="queryfinal"
-            v-on:keyup="keymonitor"
-          >
-          <!-- <select name="currency">
-            <option>USD</option>
-            <option>GBP</option>
-            <option>EUR</option>
-	        </select>
-        <button class="btn__search" >SEARCH</button> -->
-        <button class="btn__search" @click="clear">X</button>
-        </form>
-        
-    <!-- <a href="#" class="active">Home</a>
-    <a href="#">Link</a>
-    <a href="#">Link</a>
-    <a href="#" class="right">Link</a> -->
-  </div>
-  </center>
-  </section>
-
-  <div class="row">
-    <div class="main">
-      
-      <News :newss="loadedNews"/>
-    </div>
-    <div class="side">
-    <div class="image" :style="{ backgroundImage: 'url(' + loadedMem + ')'}"></div>
-
-      <h3>Top 10</h3>
-      <p>
-        <PostList :posts="loadedPosts"/>
-      </p>
-    </div>
-  </div>
-
-  <div class="footer">
-    <h2>Footer</h2>
-  </div>
-</body>
+      <body>
+        <div class="row">
+          <section class="main" id="main">
+            <News :newss="loadedNews" />
+            </section>
+        </div>
+      </body>
 </template>
   
-
 <script>
 import News from "@/components/News/NewsList";
-import PostList from "@/components/Posts/PostList";
 
-import axios from "axios";
-
-var products;
-var queryfinal;
 export default {
   components: {
-    PostList,
     News
   },
   computed: {
-    
-    loadedPosts() {
-      return this.$store.getters.loadedPosts;
-    },
     loadedNews() {
       return this.$store.getters.loadedNews;
-    },
-    loadedMem() {
-      let baseurl = 'http://localhost:8080/';
-      let imageurl = baseurl + this.$store.getters.loadedMem.patchFile
-      return imageurl;
-    }
-  },
-  data() {
-    return {
-      products: [],
-      queryfinal: ""
-      }
-    },
-  methods: {
-  	 async keymonitor(event) {
-
-      let { data } = await axios.get("http://localhost:8080/getProductBase?name=" + this.queryfinal + '&currency=USD')
-
-      this.products = data;   
-
-      return { products: data };       
-    },
-    clear() {
-      this.products = [];
-      return products
-    }
+    } 
   }
- 
 };
 </script>
 <style>

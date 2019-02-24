@@ -68,14 +68,14 @@ export default {
 <style scoped>
 #table[title~="1"] {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  background-color: grey;
+  background-color: #353535;
   width: 100%;
 }
 #table[title~="0"] {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   background-color: red;
-  opacity: 0.3;
+  opacity: 0.5;
   width: 100%;
 }
 
@@ -97,7 +97,7 @@ export default {
 }
 
 #table tr:nth-child(even) {
-  background-color: #353535;
+  background-color: #grey;
 }
 
 #a {
@@ -106,7 +106,7 @@ export default {
 }
 
 #table tr:hover {
-  background-color: #353535;
+  background-color: grey;
 }
 
 #table th {
