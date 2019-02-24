@@ -11,13 +11,15 @@
           <th>support: {{ market.support }}<hr></th>
         </tr>
         <tr>
-          <th> {{ market.description }}<hr></th>
-        </tr>
-        <tr>
           <th class="post-logo" >
             <a target="_blank" rel="noopener noreferrer" :href="market.link">
               <img :src=" market.logo "/></a><hr></th>
         </tr>
+        <tr>
+          <th>         <div class="content" v-html="market.description"></div>
+<hr></th>
+        </tr>
+        
         <tr>
           <th>Adress: {{ market.adress }}</th>
         </tr>
@@ -63,6 +65,11 @@ export default {
   text-align: center;
   box-sizing: border-box;
 }
+
+.content {
+  font-size: 12px;
+  text-align: justify;
+  margin: 20px;  }
 
 .post {
   width: 100%;

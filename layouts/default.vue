@@ -9,11 +9,11 @@
           
 
         <template>
-            <div class="productList">
+            <div class="productList" @click="clear">
                 <PostList :posts="products" />
             </div>
             <div class="header">
-                <h1>TITLE</h1>
+                <img src="/troll.jpg" class="logo"/>
 
             </div>
             <section class="search">
@@ -119,6 +119,14 @@ export default {
 }
 
 /* Style the body */
+.logo {
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+  width:170px;
+
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
