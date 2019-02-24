@@ -6,7 +6,10 @@
         <hr>
         <div class="news-thumbnail" :style="{ backgroundImage: 'url(' + news.imageLink + ')'}"/>
         <hr>
-        fb twit inst google likes {{ news.likes }} unlike {{ news.unlikes }}
+          <button @click="like" class="btn_like"><img class="like" src="/ikons/Like.png" />{{ news.likes }}</button>
+          <button @click="unLike" class="btn_like"><img class="like" src="/ikons/unlike.png" />{{ news.unlikes }}</button>
+
+        fb twit inst google 
         <hr>
         <div class="content" v-html="news.news"></div>
     </article>
@@ -19,15 +22,29 @@
 import News from "@/components/News/NewsList";
 
 import axios from 'axios'
+var likes;
+var unlikes;
+
 export default {
   components: {
     News
+  },
+  methods: {
+    like() {
+      likes = (++this.news.likes )
+      axios.post('http://localhost:8080/addLike/' + this.news.newsId, { likes })
+        .catch(e => context.error(e))
+    },
+    unLike() {
+      unlikes = (++this.news.unlikes )
+      axios.post('http://localhost:8080/addUnlike/' + this.news.newsId, { unlikes })
+         .catch(e => context.error(e))
+    }
   },
   
     asyncData(context) {
       return axios.get('http://localhost:8080/getNewsById/'+ context.route.params.newsId)
         .then(res => {
-          console.log(res.data)
           return {
             news: res.data
           }
@@ -38,6 +55,7 @@ export default {
 </script>
 
 <style scoped>
+
 .title {
   padding-top: 20px;
   color: black;
@@ -50,7 +68,6 @@ export default {
   margin: 20px;  }
 
 .news-view {
-  position: ;
   color: black;
   box-shadow: 0 2px 2px #ccc;
   background-color: #ddd;
@@ -90,5 +107,16 @@ export default {
 a:hover .news-content,
 a:active .news-content {
   background-color: #ccc;
+}
+.like {
+  padding-right: 5px;
+  font-size: 28px;
+  padding-top: 4px;
+  height: 30px;
+}
+.btn_like {
+  margin-left: 10px;
+  font-size:20px;
+  font-weight: bold
 }
 </style>

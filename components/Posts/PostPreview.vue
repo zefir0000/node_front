@@ -114,6 +114,7 @@ export default {
   color: white;
 }
 .post-preview {
+  text-decoration: none;
   border: 1px solid #ccc;
   box-shadow: 0 2px 2px #ccc;
   width: 90%;

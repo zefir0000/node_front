@@ -5,9 +5,11 @@
         <hr>
         <div class="news-thumbnail" :style="{ backgroundImage: 'url(' + imageLink + ')'}"/>
         <hr>
-        fb twit inst google likes {{ likes }} unlike {{ unlikes }}
-        <hr>
-        <div class="content" v-html="news"></div>
+        <button class="btn_like"><img class="like" src="/ikons/Like.png" />{{ likes }}</button>
+        <button class="btn_like"><img class="like" src="/ikons/unlike.png" />{{ unlikes }}</button>
+        fb twit inst google 
+        <br><br>
+        <!-- <div class="content" v-html="news"></div> -->
     </article>
   </nuxt-link>
 </template>
@@ -15,6 +17,7 @@
 <script>
 export default {
   name: "NewsView",
+  
   props: {
     id: {
       type: Number,
@@ -57,6 +60,7 @@ export default {
 <style scoped>
 
 .title {
+  font-size: 24px;
   color: black;
   text-align: center;
 }
@@ -67,12 +71,12 @@ export default {
   margin: 20px;  }
 
 .view {
-  height:380px;
+  /* height:410px; */
   overflow:hidden;
 }
 
 .news-view {
-  position: ;
+  text-decoration: none;
   color: black;
   box-shadow: 0 2px 2px #ccc;
   background-color: #ddd;
@@ -113,6 +117,17 @@ export default {
 a:hover .news-content,
 a:active .news-content {
   background-color: #ccc;
+}
+.like {
+  padding-right: 5px;
+  font-size: 28px;
+  padding-top: 4px;
+  height: 30px;
+}
+.btn_like {
+  margin-left: 10px;
+  font-size:20px;
+  font-weight: bold
 }
 
 </style>

@@ -21,7 +21,7 @@
                     <div class="search">
                       
                         <form class="search__form" action="">
-                                                  <a href="/" class="active">Home</a>
+                            <a href="/" class="active">Home</a>
 
                             <input class="search__input" placeholder="What games you want buy" type="text" name="name" v-model="queryfinal" v-on:keyup="keymonitor">
                             <!-- <select name="currency">
@@ -51,6 +51,7 @@
 
                     <h3>Top 10</h3>
                     <p>
+                      
                         <PostList :posts="loadedPosts" />
                     </p>
                 </div>
@@ -107,6 +108,7 @@ export default {
       return { products: data };       
     },
     clear() {
+      console.log('asdgfgffgfhfgffhfggfgfghfgffgh')
       this.products = [];
       return products
     }
@@ -219,7 +221,7 @@ body {
   background-color: #666;
   background-position: center;
   background-size: cover;
-  height: 400px;
+  width: 360px;
   padding: 10px;
 }
 
