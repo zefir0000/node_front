@@ -21,7 +21,7 @@
                     <div class="search">
                       
                         <form class="search__form" action="">
-                            <a href="/" class="active">Home</a>
+                            <a href="/" class="news">News</a>
 
                             <input class="search__input" placeholder="What games you want buy" type="text" name="name" v-model="queryfinal" v-on:keyup="keymonitor">
                             <!-- <select name="currency">
@@ -30,7 +30,7 @@
             <option>EUR</option>
 	        </select>
         <button class="btn__search" >SEARCH</button> -->
-                            <button class="btn__search" @click="clear">X</button>
+                            <button class="news" @click="clear">X</button>
                         </form>
 
     
@@ -108,7 +108,6 @@ export default {
       return { products: data };       
     },
     clear() {
-      console.log('asdgfgffgfhfgffhfggfgfghfgffgh')
       this.products = [];
       return products
     }
@@ -246,44 +245,45 @@ body {
     width: 100%;
   }
 }
-.btn__search {
-	-moz-box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	-webkit-box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-	background-color: red;
-	-webkit-border-top-left-radius:30px;
-	-moz-border-radius-topleft:30px;
-	border-top-left-radius:30px;
-	-webkit-border-top-right-radius:30px;
-	-moz-border-radius-topright:30px;
-	border-top-right-radius:30px;
-	-webkit-border-bottom-right-radius:30px;
-	-moz-border-radius-bottomright:30px;
-	border-bottom-right-radius:30px;
-	-webkit-border-bottom-left-radius:30px;
-	-moz-border-radius-bottomleft:30px;
-	border-bottom-left-radius:30px;
+.news {
+	-moz-box-shadow:inset 0px 0px 12px 0px #dcecfb;
+	-webkit-box-shadow:inset 0px 0px 12px 0px #dcecfb;
+	box-shadow:inset 0px 0px 12px 0px #dcecfb;
+	background:-moz-linear-gradient( center top, #bddbfa 5%, #80b5ea 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea');
+	background-color:#bddbfa;
+	-webkit-border-top-left-radius:15px;
+	-moz-border-radius-topleft:15px;
+	border-top-left-radius:15px;
+	-webkit-border-top-right-radius:15px;
+	-moz-border-radius-topright:15px;
+	border-top-right-radius:15px;
+	-webkit-border-bottom-right-radius:15px;
+	-moz-border-radius-bottomright:15px;
+	border-bottom-right-radius:15px;
+	-webkit-border-bottom-left-radius:15px;
+	-moz-border-radius-bottomleft:15px;
+	border-bottom-left-radius:15px;
 	text-indent:0;
-	border:2px solid #eeb44f;
+	border:1px solid #84bbf3;
 	display:inline-block;
-	color: black;
+	color:#ffffff;
 	font-family:Arial;
 	font-size:15px;
 	font-weight:bold;
 	font-style:normal;
-	height:51px;
-	line-height:51px;
-	width:51px;
+	height:40px;
+	line-height:40px;
+	width:100px;
 	text-decoration:none;
 	text-align:center;
-	text-shadow:1px 1px 0px #cc9f52;
+	text-shadow:1px 1px 0px #528ecc;
 }
-.btn__search:hover {
-	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-	background-color:#fb9e25;
-}.btn__search:active {
+.news:hover {
+	background:-moz-linear-gradient( center top, #80b5ea 5%, #bddbfa 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa');
+	background-color:#80b5ea;
+}.news:active {
 	position:relative;
 	top:1px;
 }

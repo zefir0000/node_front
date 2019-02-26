@@ -4,6 +4,11 @@
   "description": "My fantastic Nuxt.js project",
   "author": "Slawomir",
   "private": true,
+  "config": {
+    "nuxt": {
+      "port": "8080"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

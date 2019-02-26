@@ -5,8 +5,8 @@
         <hr>
         <div class="news-thumbnail" :style="{ backgroundImage: 'url(' + imageLink + ')'}"/>
         <hr>
-        <button class="btn_like"><img class="like" src="/ikons/Like.png" />{{ likes }}</button>
-        <button class="btn_like"><img class="like" src="/ikons/unlike.png" />{{ unlikes }}</button>
+        <button class="btn_like"><img class="like" src="/icons/Like.png" />{{ likes }}</button>
+        <button class="btn_like"><img class="like" src="/icons/unlike.png" />{{ unlikes }}</button>
         fb twit inst google 
         <br><br>
         <!-- <div class="content" v-html="news"></div> -->

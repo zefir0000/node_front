@@ -6,8 +6,8 @@
         <hr>
         <div class="news-thumbnail" :style="{ backgroundImage: 'url(' + news.imageLink + ')'}"/>
         <hr>
-          <button @click="like" class="btn_like"><img class="like" src="/ikons/Like.png" />{{ news.likes }}</button>
-          <button @click="unLike" class="btn_like"><img class="like" src="/ikons/unlike.png" />{{ news.unlikes }}</button>
+          <button @click="like" class="btn_like"><img class="like" src="/icons/Like.png" />{{ news.likes }}</button>
+          <button @click="unLike" class="btn_like"><img class="like" src="/icons/unlike.png" />{{ news.unlikes }}</button>
 
         fb twit inst google 
         <hr>
