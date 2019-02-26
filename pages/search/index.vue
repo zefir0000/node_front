@@ -2,7 +2,6 @@
   <div>
     <div>
     <section class="search">
-    <h1 class="search__header"></h1>
     <div>
       <center>
     <form class="search__form" action="" method="GET">
@@ -11,6 +10,8 @@
             placeholder="What games you want buy"
             type="text"
             name="name"
+            v-model="queryfinal"
+            v-on:keyup="keymonitor"
           >
           <select name="currency">
             <option>USD</option>
@@ -18,14 +19,12 @@
             <option>EUR</option>
 	        </select>
         <button class="btn__search" >SEARCH</button>
-
-
         </form>
         </center>
-    </div>
-     
-    <PostList :posts="products" />
-</section>
+        </div>
+            <PostList :posts="products" />
+
+  </section>
   </div>
     <nuxt-child />
   </div>
@@ -33,24 +32,32 @@
 
 <script>
 import PostList from "@/components/Posts/PostList";
+import axios from 'axios';
+var products;
+var queryfinal;
 
-import axios from 'axios'
 export default {
+  data() {
+    return {
+      products: [],
+      queryfinal: ""
+      }
+    },
+  methods: {
+  	 async keymonitor(event) {
+
+      let { data } = await axios.get("http://localhost:8080/getProductBase?name=" + this.queryfinal + '&currency=USD')
+
+      this.products = data;   
+
+      return { products: data };       
+    }
+  },
   components: {
     PostList
-  },
-    asyncData(context) {
-      return axios.get('http://localhost:8080/getProductBase?name=' + context.query.name + '&currency=' + context.query.currency)
-        .then(res => {
-          return {
-            products: res.data
-          }
-        })
-        .catch(e => context.error(e))
-    }
-};
-</script>
-
+  }
+  }
+    </script>
 <style scoped>
 .single-post-page {
   padding: 30px;

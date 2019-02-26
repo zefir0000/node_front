@@ -1,5 +1,4 @@
 <template>
-<div class="main">
   <div class="single-post-page">
     <section class="post">
       <h1 class="post-title">{{ productBase.title }}</h1>
@@ -17,7 +16,6 @@
       <div class="post-detail">Last updated on {{ productBase.updatedDate }}</div>
     </section>
   </div>
-  </div>
 </template>
 
 <script>
@@ -25,13 +23,18 @@ import axios from "axios";
 import ProductRelated from "@/components/ProductRelated/ProductRelated";
 
 export default {
-  
+    props: {
+    productId: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     ProductRelated
   },
   async asyncData(context) {
     let { data } = await axios.get(
-      "http://localhost:8080/getProductBaseRelated?id=" + context.route.params.id
+      "http://localhost:8080/getProductBaseRelated?id=" + productId
     );
 
     return { 
