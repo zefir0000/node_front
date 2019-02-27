@@ -1,11 +1,11 @@
 <template>
-      <body>
-        <div class="row">
-          <section class="main" id="main">
-            <News :newss="loadedNews" />
-            </section>
-        </div>
-      </body>
+<body>
+  <div class="row">
+    <section class="main" id="main">
+      <News :newss="loadedNews"/>
+    </section>
+  </div>
+</body>
 </template>
   
 <script>
@@ -18,7 +18,7 @@ export default {
   computed: {
     loadedNews() {
       return this.$store.getters.loadedNews;
-    } 
+    }
   }
 };
 </script>
@@ -111,8 +111,8 @@ body {
   position: absolute;
   width: 50%;
   top: 253px;
-  right:27%;
-  left:23%;
+  right: 27%;
+  left: 23%;
 }
 
 /* image, just for this example */
@@ -146,47 +146,56 @@ body {
   }
 }
 .btn__search {
-	-moz-box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	-webkit-box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-	background-color: red;
-	-webkit-border-top-left-radius:30px;
-	-moz-border-radius-topleft:30px;
-	border-top-left-radius:30px;
-	-webkit-border-top-right-radius:30px;
-	-moz-border-radius-topright:30px;
-	border-top-right-radius:30px;
-	-webkit-border-bottom-right-radius:30px;
-	-moz-border-radius-bottomright:30px;
-	border-bottom-right-radius:30px;
-	-webkit-border-bottom-left-radius:30px;
-	-moz-border-radius-bottomleft:30px;
-	border-bottom-left-radius:30px;
-	text-indent:0;
-	border:2px solid #eeb44f;
-	display:inline-block;
-	color: black;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	font-style:normal;
-	height:51px;
-	line-height:51px;
-	width:51px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #cc9f52;
+  -moz-box-shadow: inset 0px 0px 0px 0px #fce2c1;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #fce2c1;
+  box-shadow: inset 0px 0px 0px 0px #fce2c1;
+  background: -moz-linear-gradient(center top, #ffc477 5%, #fb9e25 100%);
+  background-color: red;
+  -webkit-border-top-left-radius: 30px;
+  -moz-border-radius-topleft: 30px;
+  border-top-left-radius: 30px;
+  -webkit-border-top-right-radius: 30px;
+  -moz-border-radius-topright: 30px;
+  border-top-right-radius: 30px;
+  -webkit-border-bottom-right-radius: 30px;
+  -moz-border-radius-bottomright: 30px;
+  border-bottom-right-radius: 30px;
+  -webkit-border-bottom-left-radius: 30px;
+  -moz-border-radius-bottomleft: 30px;
+  border-bottom-left-radius: 30px;
+  text-indent: 0;
+  border: 2px solid #eeb44f;
+  display: inline-block;
+  color: black;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  height: 51px;
+  line-height: 51px;
+  width: 51px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 0px #cc9f52;
 }
 .btn__search:hover {
-	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-	background-color:#fb9e25;
-}.btn__search:active {
-	position:relative;
-	top:1px;
+  background: -moz-linear-gradient(center top, #fb9e25 5%, #ffc477 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+  background-color: #fb9e25;
 }
-.search__input { transition: .2s all ease-in-out; width: 50%; border: 3px solid grey; padding: 5px; font-size: 14px; font-weight: 500; text-transform: none; font-family: 'Montserrat', sans-serif; }
-
+.btn__search:active {
+  position: relative;
+  top: 1px;
+}
+.search__input {
+  transition: 0.2s all ease-in-out;
+  width: 50%;
+  border: 3px solid grey;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  font-family: "Montserrat", sans-serif;
+}
 </style>
 

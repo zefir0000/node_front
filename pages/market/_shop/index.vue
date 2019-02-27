@@ -2,28 +2,41 @@
   <div class="single-post-page">
     <section class="post">
       <h1 class="post-title"></h1>
-      <div class="post-details"><h1>{{ market.name }}</h1></div>
+      <div class="post-details">
+        <h1>{{ market.name }}</h1>
+      </div>
       <table>
-         <tr>
-          <th><br>ratingValue: {{ trustpilot.aggregateRating.ratingValue }} | reviewCount:{{ trustpilot.aggregateRating.reviewCount }}<hr></th>
+        <tr>
+          <th>
+            <br>
+            ratingValue: {{ trustpilot.aggregateRating.ratingValue }} | reviewCount:{{ trustpilot.aggregateRating.reviewCount }}
+            <hr>
+          </th>
         </tr>
         <tr>
-          <th>support: {{ market.support }}<hr></th>
+          <th>
+            support: {{ market.support }}
+            <hr>
+          </th>
         </tr>
         <tr>
-          <th class="post-logo" >
+          <th class="post-logo">
             <a target="_blank" rel="noopener noreferrer" :href="market.link">
-              <img :src=" market.logo "/></a><hr></th>
+              <img :src=" market.logo ">
+            </a>
+            <hr>
+          </th>
         </tr>
         <tr>
-          <th>         <div class="content" v-html="market.description"></div>
-<hr></th>
+          <th>
+            <div class="content" v-html="market.description"></div>
+            <hr>
+          </th>
         </tr>
-        
+
         <tr>
           <th>Adress: {{ market.adress }}</th>
         </tr>
-
       </table>
     </section>
     <section class="post-feedback"></section>
@@ -38,8 +51,8 @@ export default {
     let { data } = await axios.get(
       "http://localhost:8080/market?name=" + context.route.params.shop
     );
-   
-    console.log(data.trustpilot[0].review)
+
+    console.log(data.trustpilot[0].review);
     return {
       market: data.markets[0],
       trustpilot: data.trustpilot[0]
@@ -69,7 +82,8 @@ export default {
 .content {
   font-size: 12px;
   text-align: justify;
-  margin: 20px;  }
+  margin: 20px;
+}
 
 .post {
   width: 100%;

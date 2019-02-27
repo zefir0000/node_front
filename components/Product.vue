@@ -3,14 +3,18 @@
     <section class="post">
       <h1 class="post-title">{{ productBase.title }}</h1>
       <div class="post-details">
-            <ProductRelated :productsRelated="productsRelated" />
+        <ProductRelated :productsRelated="productsRelated"/>
       </div>
       <table>
-        <tr> <th>
-      <p class="post-thumbnail" :style="{ backgroundImage: 'url(' + productBase.image + ')'}"></p>
-      </th><th>
-      <p class="post-content">{{ productBase.description }}</p>
-      </th></tr></table>
+        <tr>
+          <th>
+            <p class="post-thumbnail" :style="{ backgroundImage: 'url(' + productBase.image + ')'}"></p>
+          </th>
+          <th>
+            <p class="post-content">{{ productBase.description }}</p>
+          </th>
+        </tr>
+      </table>
     </section>
     <section class="post-feedback">
       <div class="post-detail">Last updated on {{ productBase.updatedDate }}</div>
@@ -23,7 +27,7 @@ import axios from "axios";
 import ProductRelated from "@/components/ProductRelated/ProductRelated";
 
 export default {
-    props: {
+  props: {
     productId: {
       type: String,
       required: true
@@ -37,10 +41,10 @@ export default {
       "http://localhost:8080/getProductBaseRelated?id=" + productId
     );
 
-    return { 
+    return {
       productBase: data.ProductBase[0],
       productsRelated: data.RelatedProducts
-       };
+    };
   },
   created() {},
   layout: "default"

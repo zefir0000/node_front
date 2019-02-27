@@ -1,11 +1,11 @@
 <template>
-  <nuxt-link :to="postLink" class="post-preview" >
+  <nuxt-link :to="postLink" class="post-preview">
     <article>
       <table id="table" :title="availability">
         <tr>
           <th class="post-thumbnail" :style="{ backgroundImage: 'url(' + thumbnail + ')'}"></th>
 
-          <th class="post-content" >
+          <th class="post-content">
             <center>
               <p id="title">
                 {{ title }}
@@ -16,7 +16,7 @@
               </table>
             </center>
           </th>
-          <td id="price">{{ price }} {{ currency }} </td>
+          <td id="price">{{ price }} {{ currency }}</td>
         </tr>
       </table>
     </article>
@@ -97,7 +97,7 @@ export default {
 }
 
 #table tr:nth-child(even) {
-  background-color: #grey;
+  background-color: grey;
 }
 
 #a {
@@ -120,7 +120,6 @@ export default {
   width: 90%;
 }
 
-
 @media (min-width: 50px) {
   .post-preview {
     width: 100%;
@@ -142,5 +141,4 @@ export default {
 a:hover .post-content,
 a:active .post-content {
 }
-
 </style>

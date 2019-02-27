@@ -26,16 +26,16 @@ const createStore = () => {
         return axios.get('http://localhost:8080/getTopTen')
           .then(res => {
             vuexContext.commit('setPosts', res.data)
-              return axios.get('http://localhost:8080/getNews')
-                .then(res => {
-                  vuexContext.commit('setNews', res.data)
-                    return axios.get('http://localhost:8080/getMems')
-                    .then(res => {
-                      return vuexContext.commit('setMem', res.data)
-                    })
-                    .catch(e => context.error(e));
-                })
-                .catch(e => context.error(e));
+            return axios.get('http://localhost:8080/getNews')
+              .then(res => {
+                vuexContext.commit('setNews', res.data)
+                return axios.get('http://localhost:8080/getMems')
+                  .then(res => {
+                    return vuexContext.commit('setMem', res.data)
+                  })
+                  .catch(e => context.error(e));
+              })
+              .catch(e => context.error(e));
           })
           .catch(e => context.error(e));
       },

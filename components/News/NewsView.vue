@@ -1,15 +1,21 @@
 <template>
-  <nuxt-link :to="postLink" class="news-view" >
-    <article class = "view">
-      <h1 class="title"> {{ title }}</h1>
-        <hr>
-        <div class="news-thumbnail" :style="{ backgroundImage: 'url(' + imageLink + ')'}"/>
-        <hr>
-        <button class="btn_like"><img class="like" src="/icons/Like.png" />{{ likes }}</button>
-        <button class="btn_like"><img class="like" src="/icons/unlike.png" />{{ unlikes }}</button>
-        fb twit inst google 
-        <br><br>
-        <!-- <div class="content" v-html="news"></div> -->
+  <nuxt-link :to="postLink" class="news-view">
+    <article class="view">
+      <h1 class="title">{{ title }}</h1>
+      <hr>
+      <div class="news-thumbnail" :style="{ backgroundImage: 'url(' + imageLink + ')'}"/>
+      <hr>
+      <button class="btn_like">
+        <img class="like" src="/icons/Like.png">
+        {{ likes }}
+      </button>
+      <button class="btn_like">
+        <img class="like" src="/icons/unlike.png">
+        {{ unlikes }}
+      </button>
+      fb twit inst google
+      <br>
+      <br>
     </article>
   </nuxt-link>
 </template>
@@ -17,7 +23,7 @@
 <script>
 export default {
   name: "NewsView",
-  
+
   props: {
     id: {
       type: Number,
@@ -58,7 +64,6 @@ export default {
 
 
 <style scoped>
-
 .title {
   font-size: 24px;
   color: black;
@@ -68,11 +73,12 @@ export default {
   color: black;
   font-size: 12px;
   text-align: justify;
-  margin: 20px;  }
+  margin: 20px;
+}
 
 .view {
   /* height:410px; */
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .news-view {
@@ -81,20 +87,19 @@ export default {
   box-shadow: 0 2px 2px #ccc;
   background-color: #ddd;
   width: 90%;
-  -webkit-border-top-left-radius:30px;
-	-moz-border-radius-topleft:30px;
-	border-top-left-radius:30px;
-	-webkit-border-top-right-radius:30px;
-	-moz-border-radius-topright:30px;
-	border-top-right-radius:30px;
-	-webkit-border-bottom-right-radius:30px;
-	-moz-border-radius-bottomright:30px;
-	border-bottom-right-radius:30px;
-	-webkit-border-bottom-left-radius:30px;
-	-moz-border-radius-bottomleft:30px;
-	border-bottom-left-radius:30px;
+  -webkit-border-top-left-radius: 30px;
+  -moz-border-radius-topleft: 30px;
+  border-top-left-radius: 30px;
+  -webkit-border-top-right-radius: 30px;
+  -moz-border-radius-topright: 30px;
+  border-top-right-radius: 30px;
+  -webkit-border-bottom-right-radius: 30px;
+  -moz-border-radius-bottomright: 30px;
+  border-bottom-right-radius: 30px;
+  -webkit-border-bottom-left-radius: 30px;
+  -moz-border-radius-bottomleft: 30px;
+  border-bottom-left-radius: 30px;
 }
-
 
 @media (min-width: 50px) {
   .news-view {
@@ -126,8 +131,7 @@ a:active .news-content {
 }
 .btn_like {
   margin-left: 10px;
-  font-size:20px;
-  font-weight: bold
+  font-size: 20px;
+  font-weight: bold;
 }
-
 </style>

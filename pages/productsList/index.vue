@@ -1,53 +1,57 @@
 <template>
   <div>
     <div>
-    <section class="search">
-    <h1 class="search__header"></h1>
-    <div>
-      <center>
-    <form class="search__form" action="" method="GET">
-          <input
-            class="search__input"
-            placeholder="What games you want buy"
-            type="text"
-            name="name"
-          >
-          <select name="currency">
-            <option>USD</option>
-            <option>GBP</option>
-            <option>EUR</option>
-	        </select>
-        <button class="btn__search" >SEARCH</button>
+      <section class="search">
+        <h1 class="search__header"></h1>
+        <div>
+          <center>
+            <form class="search__form" action method="GET">
+              <input
+                class="search__input"
+                placeholder="What games you want buy"
+                type="text"
+                name="name"
+              >
+              <select name="currency">
+                <option>USD</option>
+                <option>GBP</option>
+                <option>EUR</option>
+              </select>
+              <button class="btn__search">SEARCH</button>
+            </form>
+          </center>
+        </div>
 
-
-        </form>
-        </center>
+        <PostList :posts="products"/>
+      </section>
     </div>
-     
-    <PostList :posts="products" />
-</section>
-  </div>
-    <nuxt-child />
+    <nuxt-child/>
   </div>
 </template>
 
 <script>
 import PostList from "@/components/Posts/PostList";
 
-import axios from 'axios'
+import axios from "axios";
 export default {
   components: {
     PostList
   },
-    asyncData(context) {
-      return axios.get('http://localhost:8080/getProductBase?name=' + context.query.name + '&currency=' + context.query.currency)
-        .then(res => {
-          return {
-            products: res.data
-          }
-        })
-        .catch(e => context.error(e))
-    }
+  asyncData(context) {
+    return axios
+      .get(
+        "http://localhost:8080/getProductBase?name=" +
+          context.query.name +
+          "&currency=" +
+          context.query.currency
+      )
+      .then(res => {
+        return {
+          products: res.data
+        };
+      })
+      .catch(e => context.error(e));
+  }
 };
 </script>
 
@@ -111,48 +115,56 @@ export default {
 }
 
 .btn__search {
-	-moz-box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	-webkit-box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	box-shadow:inset 0px 0px 0px 0px #fce2c1;
-	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
-	background-color:#ffc477;
-	-webkit-border-top-left-radius:20px;
-	-moz-border-radius-topleft:20px;
-	border-top-left-radius:20px;
-	-webkit-border-top-right-radius:20px;
-	-moz-border-radius-topright:20px;
-	border-top-right-radius:20px;
-	-webkit-border-bottom-right-radius:20px;
-	-moz-border-radius-bottomright:20px;
-	border-bottom-right-radius:20px;
-	-webkit-border-bottom-left-radius:20px;
-	-moz-border-radius-bottomleft:20px;
-	border-bottom-left-radius:20px;
-	text-indent:0;
-	border:2px solid #eeb44f;
-	display:inline-block;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	font-style:normal;
-	height:51px;
-	line-height:51px;
-	width:86px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #cc9f52;
+  -moz-box-shadow: inset 0px 0px 0px 0px #fce2c1;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #fce2c1;
+  box-shadow: inset 0px 0px 0px 0px #fce2c1;
+  background: -moz-linear-gradient(center top, #ffc477 5%, #fb9e25 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+  background-color: #ffc477;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-radius-topright: 20px;
+  border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  border-bottom-left-radius: 20px;
+  text-indent: 0;
+  border: 2px solid #eeb44f;
+  display: inline-block;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  height: 51px;
+  line-height: 51px;
+  width: 86px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 0px #cc9f52;
 }
 .btn__search:hover {
-	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-	background-color:#fb9e25;
-}.btn__search:active {
-	position:relative;
-	top:1px;
+  background: -moz-linear-gradient(center top, #fb9e25 5%, #ffc477 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+  background-color: #fb9e25;
 }
-.search__input { transition: .2s all ease-in-out; width: 50%; border: 3px solid grey; padding: 10px; font-size: 16px; font-weight: 500; text-transform: none; font-family: 'Montserrat', sans-serif; }
-
-
+.btn__search:active {
+  position: relative;
+  top: 1px;
+}
+.search__input {
+  transition: 0.2s all ease-in-out;
+  width: 50%;
+  border: 3px solid grey;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: none;
+  font-family: "Montserrat", sans-serif;
+}
 </style>

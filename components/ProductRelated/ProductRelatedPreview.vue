@@ -4,22 +4,20 @@
       <tr>
         <th class="post-content">
           <center>
-          <p id="title">
-            {{ title }}
-            <br>
-          </p>
-          <table id="details">
-            <th>{{ brand }}</th>
-            
-            <th>  <nuxt-link :to="market" class="post-preview" >
-            {{ shop }}
-            </nuxt-link>
-            </th>
-            <th>
-              <a class="btn-buy" target="_blank" rel="noopener noreferrer" :href="link">BUY ME NOW</a>
-            </th>
+            <p id="title">
+              {{ title }}
+              <br>
+            </p>
+            <table id="details">
+              <th>{{ brand }}</th>
 
-          </table>
+              <th>
+                <nuxt-link :to="market" class="post-preview">{{ shop }}</nuxt-link>
+              </th>
+              <th>
+                <a class="btn-buy" target="_blank" rel="noopener noreferrer" :href="link">BUY ME NOW</a>
+              </th>
+            </table>
           </center>
         </th>
         <td id="price">{{ price }} {{ currency }}</td>
