@@ -6,6 +6,7 @@
   "private": true,
   "config": {
     "nuxt": {
+      "host": "node-front-node-front.7e14.starter-us-west-2.openshiftapps.com",
       "port": "8080"
     }
   },
