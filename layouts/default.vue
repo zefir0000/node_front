@@ -58,7 +58,6 @@
 <script>
 import News from "@/components/News/NewsList";
 import PostList from "@/components/Posts/PostList";
-import basekonfig from "@/Config/baseConfig";
 import axios from "axios";
 
 var products;
@@ -76,7 +75,7 @@ export default {
       return this.$store.getters.loadedNews;
     },
     loadedMem() {
-      let baseurl = basekonfig.baseurl;
+      let baseurl = "http://localhost:8080/";
       let imageurl = baseurl + this.$store.getters.loadedMem.patchFile;
       return imageurl;
     }
@@ -90,12 +89,11 @@ export default {
   methods: {
     async keymonitor(event) {
       let { data } = await axios.get(
-        basekonfig.baseurl + "/getProductBase?name=" +
+        "http://localhost:8080/getProductBase?name=" +
           this.queryfinal +
           "&currency=USD"
       );
 
-console.log("asd", basekonfig)
       this.products = data;
 
       return { products: data };
