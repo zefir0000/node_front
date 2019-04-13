@@ -3,7 +3,6 @@ const passport = require('passport');
 const key = 'trolololo84746dupa';
 const encryptor = require('simple-encryptor')(key);
 const axios = require('axios')
-const auth = require('basic-auth')
 
 const api = axios.create({
     baseURL: process.env.API_URL,

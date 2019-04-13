@@ -9,7 +9,6 @@ const authRoutes = require('../routes/auth-routes');
 const profileRoutes = require('../routes/profile-routes');
 const apiRoutes = require('../routes/backendApi-routes');
 const passportSetup = require('../config/passport-setup');
-const keys = require('../config/keys');
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
@@ -17,7 +16,6 @@ const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
-const auth = require("./middlewares/auth");
 var Fingerprint = require('express-fingerprint')
 
 app.set('port', port)
@@ -63,9 +61,6 @@ async function start() {
     const builder = new Builder(nuxt)
     await builder.build()
   }
-
-  // set up session cookies
-
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
