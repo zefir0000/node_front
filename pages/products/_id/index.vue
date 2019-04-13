@@ -1,167 +1,152 @@
 <template>
 <div class="main">
-  <div class="single-post-page">
-    <section class="post">
-      <h1 class="post-title">{{ productBase.title }}</h1>
-      <div class="post-details">
-            <ProductRelated :productsRelated="productsRelated" />
-      </div>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600|Teko" rel="stylesheet">
+  </head>
+  <div class="left">
+    <div class="single-post-page">
       <table>
-        <tr> <th>
-      <p class="post-thumbnail" :style="{ backgroundImage: 'url(' + productBase.image + ')'}"></p>
-      </th><th>
-      <p class="post-content">{{ productBase.description }}</p>
-      </th></tr></table>
-    </section>
-    <section class="post-feedback">
-      <div class="post-detail">Last updated on {{ productBase.updatedDate }}</div>
-    </section>
+        <tr>
+          <td rowspan="3" id="single_product_image">
+            <img v-bind:src="productBase.image" style="width:140px; height: 175px;">
+          </td>
+          <td id="single_product_title">{{ productBase.title }}</td>
+        </tr>
+        <tr>
+          <td id="single_product_platform">
+            <div id="product_value">Platform:</div>
+            <img
+              src="/icons/steam@2x.png"
+              style="width: 22px; height: 22px; margin: 0px 3px 0px 3px"
+            >
+            <div id="product_platform">{{ productBase.platform }}</div>+ category;
+          </td>
+        </tr>
+        <tr>
+          <td id="single_product_price">
+            <div id="product_value">From:</div>
+            {{ productOffer[0].price }} {{ productOffer[0].currency }}
+            <div id="product_buy_button">
+              <a v-bind:href="productOffer[0].link" style="text-decoration: none; color: white">
+                <div id="buy_text">
+                  BUY NOW
+                  <img src="/icons/open-in-new.svg">
+                </div>
+              </a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="single_product_description">{{ productBase.description }}</td>
+        </tr>
+        <tr>
+          <td colspan="2" id="single_product_images">images</td>
+        </tr>
+      </table>
+    </div>
   </div>
+
+  <div class="right">
+    <table style="width:100%">
+      <tr>
+        <td style="width:15%">Trustpilot raiting</td>
+        <td style="width:50%">Store</td>
+        <td>Price</td>
+      </tr>
+    </table>
+    <ProductRelated :productsRelated="productOffer"/>
   </div>
+</div>
 </template>
 
 <script>
-import axios from "axios";
 import ProductRelated from "@/components/ProductRelated/ProductRelated";
+import { getProduct } from "../../../api";
+
+var productBase;
+var productOffer;
 
 export default {
-  
   components: {
     ProductRelated
   },
   async asyncData(context) {
-    let { data } = await axios.get(
-      "http://localhost:8080/getProductBaseRelated?id=" + context.route.params.id
-    );
-
-    return { 
-      productBase: data.ProductBase[0],
-      productsRelated: data.RelatedProducts
-       };
+    const data = await getProduct(context.route.params.id);
+    return {
+      productBase: data.productBaseData[0],
+      productOffer: data.productOfferData
+    };
   },
-  created() {},
-  layout: "default"
+  layout: "main"
 };
 </script>
 
 
 <style scoped>
-.post-thumbnail {
-  width: 230px;
-  height: 336px;
-  background-position: center;
-  background-size: cover;
+.main {
+  font-family: "Teko", sans-serif;
+  background-color: #edf0f5;
 }
-
-.single-post-page {
+.left {
+  float: left;
+  width: 50%;
+}
+.right {
+  float: right;
+  width: 50%;
+}
+#single_product_title {
+  padding-left: 10px;
+  font-size: 32px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  text-align: left;
+  color: #495465;
+}
+#single_product_platform {
+  padding-left: 10px;
+  font-size: 18px;
+  display: flex;
+}
+#product_platform {
+  text-transform: uppercase;
+  color: #495465;
+}
+#single_product_price {
+  padding-left: 10px;
+  display: flex;
+  font-size: 56px;
+  color: #f28608;
+}
+#product_buy_button {
+  width: 140px;
+  border-radius: 22px 22px 22px 22px;
+  height: 42px;
+  margin-left: 20px;
+  margin-top: 14px;
+  background-color: #f28608;
+  font-size: 24px;
   color: white;
-  padding: 30px;
   text-align: center;
-  box-sizing: border-box;
+  -webkit-box-shadow: 0px 2px 6px gray;
+  -moz-box-shadow: 0px 2px 6px gray;
+  box-shadow: 0px 2px 6px gray;
 }
-
-.post {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .post {
-    width: 700px;
-    margin: auto;
-  }
-}
-
-.post-title {
-  margin: 0;
-}
-
-.post-details {
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 3px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.post-price {
-  border-radius: 0px 23px 0px 23px;
-  background-color: green;
-  box-shadow: 10px 10px 10px black;
-  padding: 10px;
-  font-size: 16px;
-  color: white;
-  box-sizing: border-box;
-  border-bottom: 3px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .post-details {
-    flex-direction: row;
-  }
-}
-
-.post-detail {
-  color: rgb(88, 88, 88);
-  margin: 0 10px;
-}
-
-.post-feedback a {
-  color: red;
+#buy_text {
+  margin-top: 4px;
+  text-transform: none;
   text-decoration: none;
 }
-
-.post-feedback a:hover,
-.post-feedback a:active {
-  color: salmon;
+#product_value {
+  font-size: 18px;
+  color: #748298;
 }
-.btn-buy {
-  margin-left: 30px;
-  -moz-box-shadow: inset 0px 1px 0px 0px #f5978e;
-  -webkit-box-shadow: inset 0px 1px 0px 0px #f5978e;
-  box-shadow: inset 0px 1px 0px 0px #f5978e;
-  background: -moz-linear-gradient(center top, #f24537 5%, #c62d1f 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');
-  background-color: #f24537;
-  -webkit-border-top-left-radius: 21px;
-  -moz-border-radius-topleft: 21px;
-  border-top-left-radius: 21px;
-  -webkit-border-top-right-radius: 21px;
-  -moz-border-radius-topright: 21px;
-  border-top-right-radius: 21px;
-  -webkit-border-bottom-right-radius: 21px;
-  -moz-border-radius-bottomright: 21px;
-  border-bottom-right-radius: 21px;
-  -webkit-border-bottom-left-radius: 21px;
-  -moz-border-radius-bottomleft: 21px;
-  border-bottom-left-radius: 21px;
-  text-indent: 0px;
-  border: 1px solid #d02718;
-  display: inline-block;
-  color: #ffbb00;
-  font-family: Arial;
-  font-size: 19px;
-  font-weight: bold;
-  font-style: normal;
-  height: 50px;
-  line-height: 50px;
-  width: 150px;
-  text-decoration: none;
-  text-align: center;
-  text-shadow: 1px 1px 0px #810e05;
+#single_product_description {
+  padding-left: 10px;
+  font-size: 18px;
 }
-.btn-buy:hover {
-  background: -moz-linear-gradient(center top, #c62d1f 5%, #f24537 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537');
-  background-color: #c62d1f;
-}
-.btn-buy:active {
-  position: relative;
-  top: 1px;
+#single_product_images {
+  padding-left: 10px;
 }
 </style>

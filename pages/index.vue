@@ -1,201 +1,110 @@
 <template>
-<body>
-  <div class="row">
-    <section class="main" id="main">
-      <News :newss="loadedNews"/>
-    </section>
-  </div>
-</body>
+<div>
+  <body>
+    <div class="main">
+      <div class="left" >
+        <div class="section_title">TOP 25 Games</div>
+        <TopList :games="topGames"/>
+      </div>
+      <div class="center" >
+        <div class="section_title">BEST DEALS</div>
+        <DealList :deals="deals" />
+      </div>
+      <div class="right">
+        <div class="mems" >
+          <div class="section_title">Mem Of The Day</div>
+          <Mem :file="patchMem"/>
+          <!-- <img class="mem" v-bind:src="patchMem"> -->
+        </div>
+        <div class="topUser">
+          <div class="section_title">TOP 10 Users </div>
+          <UsersList :users="users"/>
+        </div>
+      </div>
+    </div>
+  </body>
+</div>
 </template>
-  
+
 <script>
-import News from "@/components/News/NewsList";
+import { getTopTen, getMems, getDeals, getUsers } from "../api";
+import TopList from "@/components/TopGames/TopList";
+import Mem from "@/components/Mem";
+import DealList from "@/components/Deals/DealList";
+import UsersList from "@/components/Users/UsersList";
+
+let topGames
+let patchMem
+let deals
+let users
 
 export default {
   components: {
-    News
+    TopList,
+    Mem,
+    DealList,
+    UsersList
   },
   computed: {
-    loadedNews() {
-      return this.$store.getters.loadedNews;
+    isLogged() {
+      return this.$store.getters.isLogged
     }
-  }
+  },
+  async asyncData(context) {
+    const topGameRequest = await getTopTen();
+    const memRequest = await getMems();
+    const dealRequest = await getDeals();
+    const usersRequest = await getUsers();
+
+    return {
+      topGames: topGameRequest,
+      patchMem: memRequest,
+      deals: dealRequest,
+      users: usersRequest
+    };
+  },
+
+  layout: "main"
 };
 </script>
+
 <style>
 * {
   box-sizing: border-box;
 }
-
-/* Style the body */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
+.section_title {
+  font-family: "Teko", sans-serif;
+  font-size: 20px;
+  color: #748298;
 }
-
-/* Header/logo Title */
-.header {
-  height: 200px;
-  padding: 5px;
-  text-align: center;
-  background: gray;
-  color: whitesmoke;
-}
-
-/* Increase the font size of the heading */
-.header h1 {
-  font-size: 40px;
-}
-
-/* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
-.search {
-  overflow: hidden;
-  background-color: #333;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-}
-
-/* Style the navigation bar links */
-.navbar a {
-  float: left;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-}
-
-/* Right-aligned link */
-.navbar a.right {
-  float: right;
-}
-
-/* Change color on hover */
-.navbar a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Active/current link */
-.navbar a.active {
-  background-color: #666;
-  color: white;
-}
-
-/* Column container */
-.row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-}
-
-/* Create two unequal columns that sits next to each other */
-/* Sidebar/left column */
-.side {
-  -ms-flex: 30%; /* IE10 */
-  flex: 30%;
-  background-color: slategrey;
-  padding: 20px;
-}
-
-/* Main column */
 .main {
-  -ms-flex: 70%; /* IE10 */
-  flex: 70%;
-  background-color: grey;
-  padding: 20px;
+  background-color: #edf0f5;
+  font-size: 14px;
+  color: rgb(100, 115, 140);
 }
-.productList {
-  position: absolute;
-  width: 50%;
-  top: 253px;
-  right: 27%;
-  left: 23%;
-}
-
-/* image, just for this example */
-.image {
-  background-color: #666;
-  background-position: center;
-  background-size: cover;
-  height: 400px;
+/* Create three equal columns that floats next to each other */
+.left {
+  float: left;
+  width: 25%;
   padding: 10px;
 }
-
-/* Footer */
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
-}
-
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 700px) {
-  .row {
-    flex-direction: column;
-  }
-}
-
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-  .navbar a {
-    float: none;
-    width: 100%;
-  }
-}
-.btn__search {
-  -moz-box-shadow: inset 0px 0px 0px 0px #fce2c1;
-  -webkit-box-shadow: inset 0px 0px 0px 0px #fce2c1;
-  box-shadow: inset 0px 0px 0px 0px #fce2c1;
-  background: -moz-linear-gradient(center top, #ffc477 5%, #fb9e25 100%);
-  background-color: red;
-  -webkit-border-top-left-radius: 30px;
-  -moz-border-radius-topleft: 30px;
-  border-top-left-radius: 30px;
-  -webkit-border-top-right-radius: 30px;
-  -moz-border-radius-topright: 30px;
-  border-top-right-radius: 30px;
-  -webkit-border-bottom-right-radius: 30px;
-  -moz-border-radius-bottomright: 30px;
-  border-bottom-right-radius: 30px;
-  -webkit-border-bottom-left-radius: 30px;
-  -moz-border-radius-bottomleft: 30px;
-  border-bottom-left-radius: 30px;
-  text-indent: 0;
-  border: 2px solid #eeb44f;
-  display: inline-block;
-  color: black;
-  font-family: Arial;
-  font-size: 15px;
-  font-weight: bold;
-  font-style: normal;
-  height: 51px;
-  line-height: 51px;
-  width: 51px;
-  text-decoration: none;
-  text-align: center;
-  text-shadow: 1px 1px 0px #cc9f52;
-}
-.btn__search:hover {
-  background: -moz-linear-gradient(center top, #fb9e25 5%, #ffc477 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-  background-color: #fb9e25;
-}
-.btn__search:active {
-  position: relative;
-  top: 1px;
-}
-.search__input {
-  transition: 0.2s all ease-in-out;
+.center {
+  float: left;
   width: 50%;
-  border: 3px solid grey;
-  padding: 5px;
-  font-size: 14px;
-  font-weight: 500;
-  text-transform: none;
-  font-family: "Montserrat", sans-serif;
+  padding: 10px;
+}
+.right {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+.mems {
+  padding-bottom: 20px;
+}
+/* Clear floats after the columns */
+.main:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 </style>
-

@@ -10,6 +10,8 @@
       :availability="productRelated.availability"
       :currency="productRelated.currency"
       :shop="productRelated.shop"
+      :TPraiting="productRelated.TPraiting"
+      :TPreviewCount="productRelated.TPreviewCount"
     />
   </section>
 </template>
@@ -30,15 +32,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
-.product-list {
-  display: flex;
-  padding: 20px;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
 </style>
 

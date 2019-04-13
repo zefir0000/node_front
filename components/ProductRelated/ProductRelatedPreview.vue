@@ -1,29 +1,38 @@
 <template>
-  <article>
-    <table id="table" :title="availability">
-      <tr>
-        <th class="post-content">
-          <center>
-            <p id="title">
-              {{ title }}
-              <br>
-            </p>
-            <table id="details">
-              <th>{{ brand }}</th>
-
-              <th>
-                <nuxt-link :to="market" class="post-preview">{{ shop }}</nuxt-link>
-              </th>
-              <th>
-                <a class="btn-buy" target="_blank" rel="noopener noreferrer" :href="link">BUY ME NOW</a>
-              </th>
-            </table>
-          </center>
-        </th>
-        <td id="price">{{ price }} {{ currency }}</td>
-      </tr>
-    </table>
-  </article>
+<article>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600|Teko" rel="stylesheet">
+  </head>
+  <table id="table" :title="availability">
+    <tr>
+      <td id="trustpilot" :style="{ color: 'rgb('+ (100 - TPraiting) + '%' + TPraiting + '% 0%)'}">
+        <p>{{ TPraiting/10 }}</p>
+        <p id="raiting">{{ TPreviewCount }} Raitings</p>
+      </td>
+      <td id="offer_shop">
+        <p>{{ shop }}</p>
+        <p>link</p>
+      </td>
+      <td id="offer_price">
+        <tr>
+          <td>
+            <div>{{ price }} {{ currency }}</div>
+          </td>
+          <td>
+            <div id="offer_buy_button">
+              <a v-bind:href="link" style="text-decoration: none; color: white">
+                <div id="buy_text">
+                  BUY NOW
+                  <img src="/icons/open-in-new.svg">
+                </div>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </td>
+    </tr>
+  </table>
+</article>
 </template>
 
 <script>
@@ -57,90 +66,71 @@ export default {
     link: {
       type: String,
       required: true
-    }
-  },
-  computed: {
-    market() {
-      return "/market/" + this.shop;
+    },
+    TPraiting: {
+      type: Number,
+      required: true
+    },
+    TPreviewCount: {
+      type: Number,
+      required: true
     }
   }
 };
 </script>
+
 <style scoped>
 #table[title~="1"] {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  border: 1px solid #ccc;
-  width: 700px;
+  margin: 2px 4px 4px 2px;
+  border-radius: 3px 3px 3px 3px;
+  background-color: white;
+  font-family: "Teko", sans-serif;
+  width: 100%;
 }
 #table[title~="0"] {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  border: 1px solid #ccc;
+  font-family: "Teko", sans-serif;
+  border-radius: 3px 3px 3px 3px;
   background-color: red;
-  opacity: 0.3;
-  width: 700px;
-}
-
-#price {
-  width: 20%;
-  color: white;
-}
-#details {
   width: 100%;
-  font-size: 12px;
+  opacity: 0.3;
 }
-#title {
+#trustpilot {
   text-align: center;
+  font-size: 52px;
+  width: 15%;
 }
-
-#table td,
-#table th {
-  text-align: center;
-  border: 0px solid #ddd;
-  padding: 8px;
+#raiting {
+  font-size: 14px;
+  color: #748298;
 }
-
-#table tr:nth-child(even) {
-  background-color: #353535;
+#offer_shop {
+  width: 50%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #db7620;
 }
-
-#a {
-  text-decoration: none;
-  color: black;
+#offer_price {
+  width: 35%;
+  font-size: 38px;
+  color: #f28608;
 }
-
-#table tr:hover {
-  background-color: #353535;
-}
-
-#table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: transparent;
+#offer_buy_button {
+  width: 100px;
+  border-radius: 22px 22px 22px 22px;
+  height: 34px;
+  margin-left: 20px;
+  background-color: #f28608;
   color: white;
+  text-align: center;
+  -webkit-box-shadow: 0px 2px 6px gray;
+  -moz-box-shadow: 0px 2px 6px gray;
+  box-shadow: 0px 2px 6px gray;
 }
-.post-preview {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #ccc;
-  background-color: transparent;
-  width: 90%;
-}
-
-/* @media (min-width: 50px) {
-  .post-preview {
-    width: 100%;
-    margin: 10px;
-  }
-} */
-
-.post-content {
-  padding: 10px;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
+#buy_text {
+  padding-top: 5px;
+  font-size: 18px;
+  text-transform: none;
+  text-decoration: none;
 }
 </style>

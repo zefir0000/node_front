@@ -1,68 +1,53 @@
 import Vuex from "vuex";
-import axios from "axios";
+import { getUser } from "../api";
 
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      loadedPosts: [],
-      loadedNews: [],
-      loadedMem: []
+      isLogged: false,
+      user: null
     },
 
     mutations: {
-      setPosts(state, posts) {
-        state.loadedPosts = posts;
+      authUser(state, isLogged) {
+        state.isLogged = isLogged
       },
-      setNews(state, news) {
-        state.loadedNews = news;
-      },
-      setMem(state, mem) {
-        state.loadedMem = mem;
+      userData(state, user) {
+        state.user = user
       }
     },
 
     actions: {
-      nuxtServerInit(vuexContext, context) {
-        return axios.get('http://localhost:8080/getTopTen')
-          .then(res => {
-            vuexContext.commit('setPosts', res.data)
-            return axios.get('http://localhost:8080/getNews')
-              .then(res => {
-                vuexContext.commit('setNews', res.data)
-                return axios.get('http://localhost:8080/getMems')
-                  .then(res => {
-                    return vuexContext.commit('setMem', res.data)
-                  })
-                  .catch(e => context.error(e));
-              })
-              .catch(e => context.error(e));
-          })
-          .catch(e => context.error(e));
-      },
+      async nuxtServerInit(vuexContext, { req }) {
+        if (req.session.passport) {
+          if (req.session.passport.user){
+            req.session.user = req.session.passport.user
+          }
+        }
+        if (req.session.user) {
+          const userData = await getUser(req.session.user)
+          vuexContext.commit('userData', userData)
+          vuexContext.commit('authUser', true)
 
-      setPosts(vuexContext, posts) {
-        vuexContext.commit("setPosts", posts);
+        } else {
+          vuexContext.commit('userData', null)
+          vuexContext.commit('authUser', false)
+        }
       },
-
-      setNews(vuexContext, news) {
-        vuexContext.commit("setNews", news);
-      },
-      setMem(vuexContext, mem) {
-        vuexContext.commit("setMem", mem);
+      async logout({ commit }) {
+        commit('userData', null)
+        commit('authUser', false)
       }
     },
+
     getters: {
-      loadedPosts(state) {
-        return state.loadedPosts;
+      isLogged(state) {
+        return state.isLogged;
       },
-      loadedNews(state) {
-        return state.loadedNews;
-      },
-      loadedMem(state) {
-        return state.loadedMem;
+      user(state) {
+        return state.user;
       }
     },
-
   });
 };
 

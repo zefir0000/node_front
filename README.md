@@ -1,6 +1,6 @@
-# node_front
+# troll_front
 
-> My fantastic Nuxt.js project
+> front application
 
 ## Build Setup
 
